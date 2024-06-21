@@ -1,0 +1,50 @@
+*{
+    text-align: center;
+}
+
+html{
+    background-color: #e0cfc4;
+    font-size: 16px;
+
+}
+
+body{
+    width: 640px;
+    margin: auto; /* 너비에서 남는 여백을 동일하게 분배 */
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.title{
+    font-size: 48px;
+}
+
+h1{
+    font-size: 480px;
+    font-family: "Nanum Pen Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+Img{
+    width: 220px;
+    border-radius: 110px;
+    border: 2px double black;
+}
+
+div{
+    font-family: "Nanum Pen Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem
+}
+
+.text{
+    color: brown;
+}
+
+#encourage{
+    font-family: "Dongle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+

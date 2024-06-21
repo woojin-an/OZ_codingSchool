@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <title>
+            여백 다루기
+        </title>
+        <style>
+            div{
+                width: 200px;
+                height: 200px;
+                border: 30px solid black;
+
+                margin: 40px;
+
+                padding-top: 5px;
+
+                /*
+                padding & margin 상하좌우 크기 개별지정 가능
+                -> top bottom left right
+                */
+
+                /* 
+                box-sizing: 마진,패딩,보더때문에 크기가 늘어나는게 싫을때 
+                크기를 정해놓을 수 있음
+                ex) 컨텐츠 크기를 정해두고, 패딩 보더가 늘어나도 컨텐츠가 늘어나지 않음
+                */
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p>
+                흐린기억속의 그대
+            </p>
+        </div>
+    </body>
+</html>
