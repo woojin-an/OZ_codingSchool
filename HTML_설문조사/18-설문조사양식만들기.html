@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <title>
+            설문조사 양식
+        </title>
+    </head>
+    <body>
+      <header>
+        <h1>설문조사 양식</h1>
+        <p>모든 항목에 빠짐없이 체크해주십시오.</p>
+      <nav>
+        <h3>목차</h3>
+        <ol type="A">
+            <li><a href="#section1">개인정보</a></li>
+            <li><a href="#section2">설문</a></li>
+            <li><a href="#section3">기타의견</a></li>
+        </ol>
+      </nav>
+      </header>
+        <hr>
+      <main>
+        <form method="post" action="fakeURL.net"> 
+          <fieldset>
+            <!-- 개인정보 섹션 -->
+             <section id="section1">
+            <legend>A. 개인정보</legend>
+            <label for="name">이름</label>
+            <input type="text" id="name" placeholder="본명을 입력하세요"
+            name="name">
+            <br>
+            <label for="email">이메일</label>
+            <input type="email" id="email" placeholder="메일 주소를 쓰세요"
+            name="email">
+             </section>
+          </fieldset><br>
+          <fieldset>
+            <!-- 설문 섹션 -->
+            <section id="section2">             
+            <legend>B. 설문</legend>
+            <p>성별이 어떻게 되시나요?</p>
+            <input type="radio" id="male" name="sex">
+            <label for="male">남성</label>
+            <input type="radio" id="female" name="sex">
+            <label for="female">여성</label>
+            <br>
+            <p>연령대가 어떻게 되십니까?</p>
+            <input type="radio" id="teen" name="age">
+            <label for="teen">10대</label>
+            <input type="radio" id="twenty" name="age">
+            <label for="twenty">20대</label>
+            <input type="radio" id="thrity" name="age">
+            <label for="thrity">30대</label>
+            <input type="radio" id="fourty" name="age">
+            <label for="fourty">40대</label>
+            <input type="radio" id="fifty" name="age">
+            <label for="fifty">50대</label>
+            <input type="radio" id="other" name="age">
+            <label for="other">그 외</label>
+
+            <p>학원을 선택할 때 중요하게 생각하는 것을 모두 고르세요.</p>
+            <input type="checkbox" id="position" name="academy">
+            <label for="position">위치</label>
+            <input type="checkbox" id="price" name="academy">
+            <label for="price">학원비</label>
+            <input type="checkbox" id="teacher" name="academy">
+            <label for="teacher">강사</label>
+            <input type="checkbox" id="infra" name="academy">
+            <label for="infra">시설</label>
+          </fieldset><br>  
+          <fieldset>
+            <!-- 기타의견 섹션 -->
+             <section id="section3">             
+            <legend>C. 기타의견</legend>
+            <textarea rows="3" cols="90" name="comment">
+
+            </textarea>
+          </fieldset><br>
+          <input type="submit" value="완료">
+        </form>
+        <hr>
+            <!-- 푸터 -->
+        <p>입력하느라 수고하셨습니다.</p>
+        <p>지급 기준은 다음과 같습니다. </p>
+        <table border="2">
+            <caption><strong><지급 기준 표></strong></caption>
+            <tr>
+                <th>서울/인천</th>
+                <th>경기/강원</th>
+                <th>충청/대전</th>
+                <th>경상/전라</th>
+            </tr>
+            <tr>
+                <td>2만원</td>
+                <td>3만원</td>
+                <td>5만원</td>
+                <td>7만원</td>
+            </tr>
+        </table>
+      </main>
+        <hr>
+      <footer>
+        &copy; 2024 안우진
+      </footer>
+    </body>
+</html>
