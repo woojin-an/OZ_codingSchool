@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <title>
+            선택자 더 알아보기
+        </title>
+        <style>
+            /*
+            기호와 함께 사용하는 속성 선택자
+            * : 값의 포함 여부
+            ^ : 값의 시작 여부
+            $ : 값의 끝 여부
+            */
+            [width $="0"]{
+                border: 5px dashed yellowgreen;
+            }
+
+            p > em{
+                color:red;
+            }
+
+            /*
+            형제 선택자 이용 시 &&& 내 뒤 형제만  &&& 선택됨 !!
+            */
+
+            #sam + p { /* sam 형제 중 첫번쨰 p*/
+                color: orange;
+            }
+
+            #sam ~ p { /* sam 형제 모든 p*/
+                color: blue;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <img src="../image folder/IU image.jpg" width="120" alt="IU">
+        <img src="../image folder/IU image.jpg" width="120">
+        <img src="../image folder/IU image.jpg" width="120" id="sam">
+        <p>아이유는 1993년 5월 16일 서울특별시에서 태어났다.</p>
+        <p>아이유는 대한민국의 싱어송라이터, 작곡가, 배우이다.</p>
+        <p>그녀는 2007년 <em>15세의</em> 나이에 가수로 데뷔했다.</p>
+        <p>총 20여차례 오디션을 떨어졌었다.</p>
+    </body>
+</html>
