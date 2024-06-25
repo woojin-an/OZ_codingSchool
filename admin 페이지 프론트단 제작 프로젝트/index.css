@@ -53,9 +53,13 @@
   --bs-form-invalid-color: #ea868f;
   --bs-form-invalid-border-color: #ea868f;
 }
+html{
+  height: auto;
+}
 body {
   font-family: Arial, sans-serif;
   transition: background-color 0.8s ease; /* 배경색 전환 효과 */
+  
 }
 
 .container {
@@ -65,6 +69,7 @@ body {
   background-color: #fff;
   color: #333;
   border-radius: 30px;
+  height: auto;
 }
 
 .dark-mode {
@@ -75,11 +80,6 @@ body {
 /* styles.css */
 .form-select, .form-control {
   height: 38px;
-}
-
-
-#darkModeToggle {
-  float: right;
 }
 
 /* Dark mode 스타일 */
@@ -99,4 +99,8 @@ body.dark-mode {
 }
 #floatingInput{
   width:flex;
+}
+
+footer{
+  font-size: 12px;
 }

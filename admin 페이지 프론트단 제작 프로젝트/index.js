@@ -30,10 +30,6 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-// 페이지 로드 시 현재 시간 표시
-window.onload = function() {
-  displayDateTime();
-};
 
 //회원가입 버튼 클릭 시 이동
 document.getElementById('signup').onclick = function() {
