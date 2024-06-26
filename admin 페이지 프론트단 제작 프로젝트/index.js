@@ -20,6 +20,7 @@ function updateClock() {
   const hours = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
+  
   const formattedTime = 
   `${year}년 ${month}월 ${date}일 ${hours}:${minutes}:${seconds}`;
   
