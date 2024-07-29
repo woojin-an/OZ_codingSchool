@@ -1,7 +1,5 @@
 from flask import Flask
 from flask_smorest import Api
-from flask_sqlalchemy import SQLAlchemy
-from models import Post
 from db import db
 app = Flask(__name__)
 

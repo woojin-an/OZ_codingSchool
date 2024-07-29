@@ -95,14 +95,14 @@
           });
       }
 
-      function loadPostForEditing(id) {
+      function loadPostForEditing(post_id) {
         axios
-          .get("/post/" + id)
+          .get("/post/" + post_id)
           .then(function (response) {
             const post = response.data;
 
             console.log("post", post);
-            currentEditingId = post.id;
+            currentEditingId = post.post_id;
             document.getElementById("title").value = post.title;
             document.getElementById("content").value = post.content;
             document.getElementById("createButton").style.display = "none";
@@ -132,10 +132,10 @@
         }
       }
 
-      function deletePost(id) {
+      function deletePost(post_id) {
         if (confirm("Are you sure you want to delete this post?")) {
           axios
-            .delete("/post/" + id)
+            .delete("/post/" + post_id)
             .then(function (response) {
               console.log(response);
               loadPosts();
