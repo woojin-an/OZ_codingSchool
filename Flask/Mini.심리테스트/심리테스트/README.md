@@ -73,15 +73,14 @@ class Quiz(db.Model):
     question = db.relationship("Question", backref="quizzes")
 ```
 
-
-### 1. Participant (참가자)
-### 2. Admin (관리자)
-### 3. Question (질문지)
-### 4. Quiz (질문에 대한 응답)
+### DB 내 Table 종류
+1. Participant (참가자)
+2. Admin (관리자)
+3. Question (질문지)
+4. Quiz (질문에 대한 응답)
 ---
 # app/routes.py
-flask-Blueprint 를 이용해 route를 설정함
-
+flask-Blueprint 를 이용해 route를 설정함  
 `main route`, `admin route` 로 나누어짐
 
 ## `main route`
@@ -112,8 +111,7 @@ def add_participant():
         {"redirect": url_for("main.quiz"), "participant_id": new_participant.id}
     )
 ```
-사용자로부터 이름, 나이, 성별, 참여시간(실시간) 을 입력받아 json 형태로 DB에 저장함
-
+사용자로부터 이름, 나이, 성별, 참여시간(실시간) 을 입력받아 json 형태로 DB에 저장함  
 이후 저장된 new_participant.id를 돌려보내며 사용자에게는 `127.0.0.1:5000/quiz` 로 넘어가게 함
 
 
@@ -135,6 +133,8 @@ def quiz():
 이 전 `participants` 으로부터 받아온 `participants.id` 를 조회하여 유효한 사용자인지 확인 후,  
 DB의 `Question` 에서 질문을 모두 가져온 뒤 페이지(`quiz.html`)에 나타냄
 
+
+---
 * `127.0.0.1:5000/submit`
 ```
 @main.route("/submit", methods=["POST"])
@@ -171,6 +171,7 @@ def submit():
 ```
 응답의 id, 사용자 id, 사용자로부터 입력된 응답들이 json 형태로 DB에 전송(저장)됨
 
+---
 * `127.0.0.1:5000/questions`
 ```
 @main.route("/questions")
@@ -193,8 +194,8 @@ def get_questions():
 ```
 DB의 `Question` 에서 is_active가 True 인 경우만 order_num에 따라 정렬하여 json 형태로 전송함
 
-* `127.0.0.1:5000/results`
-
+---
+* `127.0.0.1:5000/results`  
 DB에서 데이터를 조회하여 시각화함
 
 
@@ -217,14 +218,12 @@ def login():
 
     return render_template("admin.html")
 ```
-
-`admin.html` 을 이용하여 사용자로부터 정보(계정)를 입력받음
-
-사용자로부터 요청받은 username이 admin 계정 DB에 있는지 조회함
-
+`admin.html` 을 이용하여 사용자로부터 정보(계정)를 입력받음  
+사용자로부터 요청받은 username이 admin 계정 DB에 있는지 조회함  
 있다면 templates 폴더의 dashboard.html이 나타남  
 없다면 오류 메세지를 띄움
 
+---
 * `127.0.0.1:5000/logout`
 ```
 @admin.route("/logout")
@@ -232,9 +231,9 @@ def logout():
     session.pop("admin_logged_in", None)
     return redirect(url_for("admin.login"))
 ```
-
 사용자 세션에서 "admin_logged_in" 을 지우고 `127.0.0.1:5000/login` 으로 돌아가게 함
 
+---
 * `'login_required'`
 ```
 def login_required(f):
@@ -246,22 +245,22 @@ def login_required(f):
 
     return decorated_function
 ```
-`login_required` 함수를  데코레이터로 정의하여, `127.0.0.1:5000/admin/dashboard`, `127.0.0.1:5000/admin/dashboard/question`, `127.0.0.1:5000/admin/dashboard/list` 라우터에는 데코레이터를 활용하여 admin 계정 로그인이 필요하게끔 하였음
+`login_required` 함수를  데코레이터로 정의하여, `/dashboard`, `/dashboard/question`, `/dashboard/list` 라우터에는 데코레이터를 활용하여 admin 계정 로그인이 필요하게끔 하였음
 
+---
 * `127.0.0.1:5000/admin/dashboard`
-
-DB에 저장된 키(key)의 관계를 활용하여 여러가지의 데이터를 나타내고 있음
-
+DB에 저장된 키(key)의 관계를 활용하여 여러가지의 데이터를 나타내고 있음  
 날짜별 참가자 수, 날짜와 참가자 수를 분리하여 리스트로 할당 후 그래프로 표현함
 
+---
 * `127.0.0.1:5000/admin/dashboard/question`
-
 `manage_question()` 함수를 정의하여 질문을 추가, 수정할 수 있게 함
 
+---
 * `127.0.0.1:5000/admin/dashboard/list`
-
 사용자들의 질문 별 답변들을 DB로부터 불러와서 모두 나타나게 함 
 
+---
 # 사용된 라이브러리
 ### 1. Python 3.12
 ### 2. Flask 3.0.3
