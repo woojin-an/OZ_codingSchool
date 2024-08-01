@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>결과 보기</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        #goHome {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            position: relative;
+        }
+        .button-link {
+            padding: 15px 30px;
+            font-size: 20px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div id="goHome">
+        <a href="/" class="button-link">홈으로</a>
+    </div>
+    <div id="participants_graph"></div>
+    <script>
+        var graphJSON_participants = {{ graphJSON_participants | tojson | safe }};
+        Plotly.newPlot('participants_graph', graphJSON_participants.data, graphJSON_participants.layout);
+    </script>
+
+    {% for question_id, graphJSON in graphsJSON_answers.items() %}
+        <div id="question_{{ question_id }}"></div>
+        <script>
+            var graphJSON = {{ graphJSON | tojson | safe }};
+            Plotly.newPlot('question_{{ question_id }}', graphJSON.data, graphJSON.layout);
+        </script>
+    {% endfor %}
+</body>
+</html>
