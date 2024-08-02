@@ -5,6 +5,7 @@ import pytz
 import plotly.express as px
 import pandas as pd
 from datetime import datetime, timedelta
+from collections import Counter
 
 main = Blueprint("main", __name__)
 
@@ -70,28 +71,34 @@ def show_results():
     answers = Answer.query.all()
     participants = Participant.query.all()
 
+    # 나이 별 참가자 수
+    age_counts = Counter([p.age for p in participants])
+
     # 전체 참가자 그래프 데이터 준비
     graphJSON_participants = {
-        'data': [{'type': 'bar', 'x': [p.name for p in participants], 'y': [p.id for p in participants]}],  # 예시 데이터
+        'data': [{'type': 'bar', 'x': list(age_counts.keys()), 'y': list(age_counts.values())}],  # 예시 데이터
         'layout': {'title': 'All Participants'}
     }
 
-    # 각 참가자별 그래프 데이터 준비
-    graphsJSON_answers = {}
+    # 질문 별 응답자 수 집계
+    answer_counts = {
+        f'Question {i}': {'YES': 0, 'NO': 0} for i in range(1, 6)
+    }
     for answer in answers:
-        if answer.participant_id not in graphsJSON_answers:
-            graphsJSON_answers[answer.participant_id] = {
-                'data': [],
-                'layout': {'title': f'Participant {answer.participant_id}'}
-            }
+        question_key = f'Question {answer.question_id}'
+        if answer.chosen_answer.upper() in ['YES', 'NO']:
+            answer_counts[question_key][answer.chosen_answer.upper()] += 1
 
-        # 각 질문에 대한 데이터 추가
-        graphsJSON_answers[answer.participant_id]['data'].append({
-            'type': 'bar',
-            'x': [f'Question {answer.question_id}'],
-            'y': [answer.chosen_answer],
-            'name': f'Question {answer.question_id}'
-        })
+    # 그래프 만들기
+    graphsJSON_answers = {
+        question: {
+            'data': [
+                {'type': 'bar', 'x': ['YES', 'NO'], 'y': [counts['YES'], counts['NO']], 'name': question}
+            ],
+            'layout': {'title': question}
+        }
+        for question, counts in answer_counts.items()
+    }
 
     return render_template('results.html',
                            graphJSON_participants=graphJSON_participants,

@@ -14,11 +14,16 @@ class Participant(db.Model):
 class Answer(db.Model):
     __tablename__ = 'answers'
     id = db.Column(db.Integer, primary_key=True)
+    question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'), nullable=False)
+    participant_id = db.Column(db.Integer, db.ForeignKey('participants.id'), nullable=False)
+    chosen_answer = db.Column(db.String(20))
+
+
+class Question(db.Model):
+    __tablename__ = 'questions'
+    id = db.Column(db.Integer, primary_key=True)
     question_id = db.Column(db.Integer, nullable=False)
-    participant_id = db.Column(db.Integer, db.ForeignKey('participants.id'))
-    chosen_answer = db.Column(db.String(255))
-
-
+    content = db.Column(db.String(50), nullable=False)
 
 
 
