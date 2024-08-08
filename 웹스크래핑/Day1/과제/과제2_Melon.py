@@ -36,26 +36,19 @@ soup = BeautifulSoup(html, 'html.parser')
 
 wraps_50 = soup.select(".lst50")
 wraps_100 = soup.select(".lst100")
-print(f"{url_date[0:2]}월 {url_date[2:4]}일 {url_time}시의 Top100 입니다")
-for i in wraps_50:
+wraps = wraps_50 + wraps_100
+
+print(f"{url_date[0:4]}년 {url_date[4:6]}월 {url_date[6:]}일 {url_time}시의 Top100 입니다")
+
+for i in wraps:
     rank = i.select_one(".rank").text.strip()
     title = i.select_one(".ellipsis.rank01").text.strip()
     artist = i.select_one(".checkEllipsis").text.strip()
     album = i.select_one(".ellipsis.rank03").text.strip()
-    print("--------------------")
+    print("-" * 40)
     print(f"순위: {rank}")
     print(f"제목: {title}")
     print(f"가수: {artist}")
     print(f"앨범: {album}")
 
-for i in wraps_100:
-    rank = i.select_one(".rank").text.strip()
-    title = i.select_one(".ellipsis.rank01").text.strip()
-    artist = i.select_one(".checkEllipsis").text.strip()
-    album = i.select_one(".ellipsis.rank03").text.strip()
-    print("--------------------")
-    print(f"순위: {rank}")
-    print(f"제목: {title}")
-    print(f"가수: {artist}")
-    print(f"앨범: {album}")
-print("--------------------")
+print("-" * 40)
