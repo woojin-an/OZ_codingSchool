@@ -44,11 +44,11 @@ def manage_reservation():
     return render_template('index.html', reservations=reservations)
 
 
-@app.route('/edit_reservation', methods=['GET', 'POST'])
+@app.route('/edit_reservation', methods=['PUT'])
 def edit_reservation():
     reservation = Reservation.query.all()
 
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.form
         reservation.customer_name = data['customer_name']
         reservation.customer_phone = data['customer_phone']
